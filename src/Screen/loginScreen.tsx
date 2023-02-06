@@ -12,6 +12,7 @@ import {global} from '../theme';
  */
 
 const LoginScreen: React.FC<{}> = () => {
+
   return (
     <View style={[global.main, {backgroundColor: '#ffffff'}]}>
       <Text>Login page</Text>
