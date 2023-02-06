@@ -1,6 +1,6 @@
 import {createIconSet} from 'react-native-vector-icons';
 import iconfontInfo from './iconfont.json';
-const glyphmap = {};
+const glyphmap: any = {};
 iconfontInfo.glyphs.forEach(item => {
   glyphmap[item.font_class] = unescape(`%u${item.unicode}`);
 });
