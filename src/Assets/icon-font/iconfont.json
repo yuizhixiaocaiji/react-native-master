@@ -1,0 +1,114 @@
+{
+  "id": "3870753",
+  "name": "react-native-deer",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7596589",
+      "name": "24gf-ellipsis",
+      "font_class": "shenglue",
+      "unicode": "eb10",
+      "unicode_decimal": 60176
+    },
+    {
+      "icon_id": "24848675",
+      "name": "展开",
+      "font_class": "zhankai",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "18170358",
+      "name": "日历,日期",
+      "font_class": "riqi",
+      "unicode": "e9ab",
+      "unicode_decimal": 59819
+    },
+    {
+      "icon_id": "629357",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "719754",
+      "name": "已出单",
+      "font_class": "xindingdan",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "2053192",
+      "name": "配送管理",
+      "font_class": "peisongzhong",
+      "unicode": "e6eb",
+      "unicode_decimal": 59115
+    },
+    {
+      "icon_id": "17605467",
+      "name": "等待",
+      "font_class": "dengdaizhong",
+      "unicode": "e816",
+      "unicode_decimal": 59414
+    },
+    {
+      "icon_id": "19904279",
+      "name": "订单取消_icon",
+      "font_class": "dingdanquxiao",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "24670642",
+      "name": "订单完成",
+      "font_class": "dingdanwancheng",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "356464",
+      "name": "商品",
+      "font_class": "shangpin",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "577332",
+      "name": "店铺-fill",
+      "font_class": "dianpu",
+      "unicode": "e735",
+      "unicode_decimal": 59189
+    },
+    {
+      "icon_id": "6129157",
+      "name": "116订单、订单明细、收支明细",
+      "font_class": "dingdan",
+      "unicode": "e78a",
+      "unicode_decimal": 59274
+    },
+    {
+      "icon_id": "8094217",
+      "name": "统计",
+      "font_class": "tongji",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "1597923",
+      "name": "闭眼",
+      "font_class": "biyan",
+      "unicode": "e6ba",
+      "unicode_decimal": 59066
+    },
+    {
+      "icon_id": "15634310",
+      "name": "睁眼",
+      "font_class": "zhengyan",
+      "unicode": "e6aa",
+      "unicode_decimal": 59050
+    }
+  ]
+}
