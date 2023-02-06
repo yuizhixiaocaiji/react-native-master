@@ -1,8 +1,5 @@
 /**
- * Used to navigating without the navigation prop
- * @see https://reactnavigation.org/docs/navigating-without-navigation-prop/
- *
- * You can add other navigation functions that you need and export them
+ * 通用导航方法
  */
 import {
   CommonActions,
@@ -11,7 +8,7 @@ import {
 
 export const navigationRef = createNavigationContainerRef();
 
-export const navigate = (name: string, params: any): void => {
+export const navigate = (name, params): void => {
   if (navigationRef.isReady()) {
     navigationRef.navigate(name, params);
   }
