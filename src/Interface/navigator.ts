@@ -1,3 +1,4 @@
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 /**
  * 路由专用类型文件
  *
@@ -10,3 +11,5 @@ export type RootStackParamList = {
   Login: undefined;
   Home: {userId: string};
 };
+
+export type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;

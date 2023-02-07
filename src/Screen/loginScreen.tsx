@@ -11,8 +11,7 @@ import {global} from '../theme';
  * @returns 登录页
  */
 
-const LoginScreen: React.FC<{}> = () => {
-
+const LoginScreen: React.FC<unknown> = () => {
   return (
     <View style={[global.main, {backgroundColor: '#ffffff'}]}>
       <Text>Login page</Text>
