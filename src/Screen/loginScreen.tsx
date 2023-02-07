@@ -7,6 +7,7 @@ import {userMessage} from '../Json/users';
 import {RootStackScreenProps} from '../Interface';
 import {global} from '../theme';
 import {InputLogin} from '../Component';
+import {LoginParams} from '../Interface';
 /**
  *
  * @returns 登录页
@@ -15,10 +16,38 @@ import {InputLogin} from '../Component';
 const LoginScreen: React.FC<RootStackScreenProps<'Login'>> = ({
   navigation,
 }: RootStackScreenProps<'Login'>) => {
-  const [isDisplay, setIsDisplay] = React.useState(true);
+  const [isDisplay, setIsDisplay] = React.useState(true),
+    [submitData, setSubmitData] = React.useState<LoginParams>({
+      userId: '',
+      password: '',
+    }),
+    [userErrorMessage, setUserErrorMessage] = React.useState(''),
+    [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
 
-  const goHome = () => {
-    navigation.navigate('Home', {userId: '1000'});
+  const changeButtonStatus = React.useCallback((status: boolean) => {
+    setIsDisplay(status);
+  }, []);
+
+  const submitLogin = () => {
+    if (
+      !!userMessage.find(
+        item =>
+          item.userId === submitData.userId &&
+          item.password === submitData.password,
+      )
+    ) {
+      setUserErrorMessage('');
+      setPasswordErrorMessage('');
+      navigation.navigate('Home', {userId: '1000'});
+    } else if (!!!userMessage.find(item => item.userId === submitData.userId)) {
+      setUserErrorMessage('用户名不存在，请检查后重试');
+    } else if (!!userMessage.find(item => item.userId === submitData.userId)) {
+      setUserErrorMessage('');
+      userMessage.find(item => item.userId === submitData.userId)?.password ===
+      submitData.password
+        ? setPasswordErrorMessage('')
+        : setPasswordErrorMessage('密码错误，请检查后重新输入');
+    }
   };
 
   return (
@@ -34,14 +63,20 @@ const LoginScreen: React.FC<RootStackScreenProps<'Login'>> = ({
       <View style={styles.titleHolder}>
         <Text style={styles.appTitle}>有好管家</Text>
       </View>
-      <InputLogin />
+      <InputLogin
+        changeButtonStatus={changeButtonStatus}
+        setSubmitData={(params: LoginParams) => setSubmitData(params)}
+        userErrorMessage={userErrorMessage}
+        passwordErrorMessage={passwordErrorMessage}
+      />
       <View>
         <Button
           title="登录"
           buttonStyle={styles.buttonStyles}
           containerStyle={styles.buttonStyles}
           titleStyle={styles.buttonTextStyles}
-          disabled={isDisplay}></Button>
+          disabled={isDisplay}
+          onPress={submitLogin}></Button>
       </View>
       <View style={{marginTop: 100}}>
         <Text style={styles.tagText}>有好软件版权所有</Text>
