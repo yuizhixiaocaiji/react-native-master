@@ -8,6 +8,10 @@ const HomeScreen: React.FC<RootStackScreenProps<'Home'>> = ({
   route,
   navigation,
 }: RootStackScreenProps<'Home'>) => {
+  React.useEffect(() => {
+    console.log(route.params, navigation);
+  }, []);
+
   return (
     <View style={[global.main, {backgroundColor: '#ffffff'}]}>
       <Text>Home page</Text>
