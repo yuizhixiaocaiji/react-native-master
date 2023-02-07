@@ -12,4 +12,11 @@ export type RootStackParamList = {
   Home: {userId: string};
 };
 
-export type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+export type RootStackScreenProps<T extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, T>;
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
