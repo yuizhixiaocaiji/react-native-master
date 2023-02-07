@@ -1,7 +1,7 @@
 import {Dimensions} from 'react-native';
 
-const uiWidthPx = 375; // 设计稿宽
-const uiHeightPx = 667; // 设计稿高
+const uiWidthPx = 750; // 设计稿宽
+const uiHeightPx = 1334; // 设计稿高
 const deviceWidthDp = Dimensions.get('window').width;
 const deviceHeightDp = Dimensions.get('screen').height; // 当前设备的高
 
