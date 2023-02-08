@@ -15,10 +15,14 @@ export const paramsSlice = createSlice({
   name: 'userParams',
   initialState,
   reducers: {
-    saveLoginParams: (state, action: PayloadAction<LoginParams>) => {
-      state.password = action.payload.password;
-      state.userId = action.payload.userId;
+    saveLoginUserId: (state, action: PayloadAction<string>) => {
+      state.userId = action.payload;
     },
+
+    saveLoginPassword: (state, action: PayloadAction<string>) => {
+      state.password = action.payload;
+    },
+
     removeLoginParams: state => {
       state.password = '';
       state.userId = '';
@@ -26,7 +30,8 @@ export const paramsSlice = createSlice({
   },
 });
 
-export const {saveLoginParams, removeLoginParams} = paramsSlice.actions;
+export const {saveLoginUserId, saveLoginPassword, removeLoginParams} =
+  paramsSlice.actions;
 
 export const selectParams = (state: RootState) => state.loginParams;
 

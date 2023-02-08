@@ -4,17 +4,20 @@ import {ThemeProvider} from '@rneui/themed';
 import {myTheme} from './Config';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
-import store from './Store/store';
+import store, {persistore} from './Store/store';
+import {PersistGate} from 'redux-persist/integration/react';
 
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={myTheme}>
-        <Provider store={store}>
-          <NavigatorInit />
-        </Provider>
-      </ThemeProvider>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistore}>
+        <SafeAreaProvider>
+          <ThemeProvider theme={myTheme}>
+            <NavigatorInit />
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </PersistGate>
+    </Provider>
   );
 };
 

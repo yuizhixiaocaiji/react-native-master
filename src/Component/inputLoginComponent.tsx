@@ -3,39 +3,35 @@ import * as React from 'react';
 import {customStyleSheet} from '../Config';
 import CustonIcon from '../Assets/icon-font/index';
 import {LoginParams} from '../Interface';
+import {useAppSelector, useAppDispatch} from '../Hooks/redux.hooks';
+import {
+  selectParams,
+  saveLoginUserId,
+  saveLoginPassword,
+} from '../Slice/login.slice';
 
 interface inputLoginParams {
   changeButtonStatus: (status: boolean) => void;
-  setSubmitData: (params: LoginParams) => void;
   userErrorMessage: string;
   passwordErrorMessage: string;
 }
 
 function inputLogin(props: inputLoginParams) {
-  const {
-    changeButtonStatus,
-    setSubmitData,
-    userErrorMessage,
-    passwordErrorMessage,
-  } = props;
+  const {changeButtonStatus, userErrorMessage, passwordErrorMessage} = props;
+
+  const submitData: LoginParams = useAppSelector(selectParams);
+  const dispatch = useAppDispatch();
 
   const userInput: any = React.createRef(),
     passwordInput: any = React.createRef();
 
-  const [userId, setUserId] = React.useState(''),
-    [password, setPassword] = React.useState('');
-
   React.useEffect(() => {
-    if (userId !== '' && password.length > 3) {
-      const params: LoginParams = {userId: '', password: ''};
-      params.userId = userId;
-      params.password = password;
-      setSubmitData(params);
+    if (submitData.userId !== '' && submitData.password.length > 3) {
       changeButtonStatus(false);
     } else {
       changeButtonStatus(true);
     }
-  }, [userId, password]);
+  }, [submitData.userId, submitData.password]);
 
   React.useEffect(() => {
     if (userErrorMessage !== '') {
@@ -54,9 +50,10 @@ function inputLogin(props: inputLoginParams) {
         inputContainerStyle={styles.inputStyle}
         leftIcon={<CustonIcon name="zhanghaoicon" color="#2A6CE8" size={20} />}
         placeholder="请输入账号"
-        onChangeText={value => setUserId(value)}
+        onChangeText={value => dispatch(saveLoginUserId(value))}
         errorStyle={{color: 'red'}}
-        errorMessage={userErrorMessage}></Input>
+        errorMessage={userErrorMessage}
+        value={submitData.userId}></Input>
       <Input
         ref={passwordInput}
         secureTextEntry={true}
@@ -64,9 +61,10 @@ function inputLogin(props: inputLoginParams) {
         inputContainerStyle={styles.inputStyle}
         leftIcon={<CustonIcon name="mimaicon" color="#2A6CE8" size={20} />}
         placeholder="请输入4～8位密码"
-        onChangeText={value => setPassword(value)}
+        onChangeText={value => dispatch(saveLoginPassword(value))}
         errorStyle={{color: 'red'}}
-        errorMessage={passwordErrorMessage}></Input>
+        errorMessage={passwordErrorMessage}
+        value={submitData.password}></Input>
     </>
   );
 }

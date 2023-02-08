@@ -8,6 +8,9 @@ import {RootStackScreenProps} from '../Interface';
 import {global} from '../theme';
 import {InputLogin} from '../Component';
 import {LoginParams} from '../Interface';
+import {useAppSelector} from '../Hooks/redux.hooks';
+import {selectParams} from '../Slice/login.slice';
+
 /**
  *
  * @returns 登录页
@@ -17,12 +20,10 @@ const LoginScreen: React.FC<RootStackScreenProps<'Login'>> = ({
   navigation,
 }: RootStackScreenProps<'Login'>) => {
   const [isDisplay, setIsDisplay] = React.useState(true),
-    [submitData, setSubmitData] = React.useState<LoginParams>({
-      userId: '',
-      password: '',
-    }),
     [userErrorMessage, setUserErrorMessage] = React.useState(''),
     [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+
+  const submitData: LoginParams = useAppSelector(selectParams);
 
   const changeButtonStatus = React.useCallback((status: boolean) => {
     setIsDisplay(status);
@@ -65,7 +66,6 @@ const LoginScreen: React.FC<RootStackScreenProps<'Login'>> = ({
       </View>
       <InputLogin
         changeButtonStatus={changeButtonStatus}
-        setSubmitData={(params: LoginParams) => setSubmitData(params)}
         userErrorMessage={userErrorMessage}
         passwordErrorMessage={passwordErrorMessage}
       />
