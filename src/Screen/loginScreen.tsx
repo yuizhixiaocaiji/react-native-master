@@ -10,6 +10,7 @@ import {InputLogin} from '../Component';
 import {LoginParams} from '../Interface';
 import {useAppSelector} from '../Hooks/redux.hooks';
 import {selectParams} from '../Slice/login.slice';
+import myHttpMethod from '../Https/httpService';
 
 /**
  *
@@ -22,6 +23,13 @@ const LoginScreen: React.FC<RootStackScreenProps<'Login'>> = ({
   const [isDisplay, setIsDisplay] = React.useState(true),
     [userErrorMessage, setUserErrorMessage] = React.useState(''),
     [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+
+  React.useEffect(() => {
+    const httpMethod = new myHttpMethod();
+    httpMethod.checkConnect().subscribe(data => {
+      console.log(data);
+    });
+  }, []);
 
   const submitData: LoginParams = useAppSelector(selectParams);
 
