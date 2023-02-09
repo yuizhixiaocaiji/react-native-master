@@ -4,6 +4,7 @@
 ### 时间：2023年2月6日
 ### 技术栈类别
 * 主要技术框架: React-Native(TS)
+* 路由导航解决方案: React-Navigator
 * 网络通讯技术: Axios
 * 状态管理工具及数据持久化: Redux Toolkit && Redux-Persist
 * 响应式编程工具: Rxjs
