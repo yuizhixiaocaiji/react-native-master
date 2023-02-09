@@ -4,13 +4,29 @@ import {from, Observable, throwError, TimeoutError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {CheckConnectData, CheckHttp, ResponseSuccess} from '../Interface';
 
+/**
+ * http请求封装
+ * 单例模式
+ */
+
 const httpAddress: string = 'http://192.168.2.138:31010';
 export default class myHttpMethod {
-  httpBody;
+  private httpBody;
+  private static instance: myHttpMethod;
 
-  constructor() {
+  private constructor() {
     const api = new appApi();
     this.httpBody = api.api<any>();
+  }
+
+  /**
+   * 实例化方法
+   */
+  static getInstance(): myHttpMethod {
+    if (!this.instance) {
+      this.instance = new myHttpMethod();
+    }
+    return this.instance;
   }
 
   /**
@@ -18,13 +34,13 @@ export default class myHttpMethod {
    *
    * @param errorResponse 错误信息
    */
-  handleErrorResponse(err: any) {
+  private handleErrorResponse(err: any) {
     console.log(111);
   }
   /**
    * 构建请求网址
    */
-  nsURL(url: string): string {
+  private nsURL(url: string): string {
     return httpAddress + '/' + url;
   }
 
@@ -33,7 +49,7 @@ export default class myHttpMethod {
    url：请求url
    ResponseBody:自定义pojo类
    */
-  post<T>(api: HttpObject<T>): Observable<AxiosResponse<any, any>> {
+  private post<T>(api: HttpObject<T>): Observable<AxiosResponse<any, any>> {
     const url = this.nsURL(api.url);
     console.log(url);
     return from(
@@ -48,7 +64,7 @@ export default class myHttpMethod {
   /**
    * 搜索api并返回
    */
-  getApi<T>(apiId: string): HttpObject<T> {
+  private getApi<T>(apiId: string): HttpObject<T> {
     const params = this.httpBody.filter(item => {
       if (item.id === apiId) {
         return item;
@@ -59,7 +75,7 @@ export default class myHttpMethod {
   }
 
   //通用的post返回值出理方案
-  buildPostData<T>(postData: AxiosResponse<ResponseSuccess>) {
+  private buildPostData<T>(postData: AxiosResponse<ResponseSuccess>) {
     if (postData.data) {
       return postData.data.data as T;
     }

@@ -25,7 +25,7 @@ const LoginScreen: React.FC<RootStackScreenProps<'Login'>> = ({
     [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
 
   React.useEffect(() => {
-    const httpMethod = new myHttpMethod();
+    const httpMethod = myHttpMethod.getInstance();
     httpMethod.checkConnect().subscribe(data => {
       console.log(data);
     });
